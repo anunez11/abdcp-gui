@@ -1,18 +1,29 @@
-import React from 'react';
-//import logo from '../logo.svg';
-import '../App.css';
-import { version, Button } from "antd";
-//import "antd/dist/antd.css";
-function App() {
-  return (
-    <div className="App">
-    <h1>Please fork this codesandbox to reproduce your issue.</h1>
-    <div>Current antd version: {version}</div>
-    <div style={{ marginTop: "16px" }}>
-      <Button type="primary">Example button</Button>
-    </div>
-  </div>
-  );
+import React, { Component } from 'react';
+
+import PropTypes from 'prop-types';
+import Contenido from './global/Contenido';
+import MenuLateral from "./global/MenuLateral";
+import {Layout} from 'antd';
+import "antd/dist/antd.css";
+import "../App.css";
+class App extends Component  {
+  static propTypes ={
+    children:PropTypes.object.isRequired
+  }
+  render() {
+    const {children}=this.props;
+    return (
+      <div className="App">
+          <Layout style={{ minHeight: '100vh' }}>
+               <MenuLateral/>
+               <Contenido body={children} /> 
+          </Layout>
+          
+         
+      </div>
+    );
+  }
+  
 }
 
 export default App;
