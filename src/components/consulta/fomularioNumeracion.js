@@ -18,9 +18,9 @@ class  FomularioNumeracion extends Component{
                             const error='El rango Final debe ser mayor igual que el rango inicial';
                             if (value!=="" ) { 
 
-                                const ini=parseInt(getFieldValue("rangoIni"));
-                                const fin=parseInt(getFieldValue("rangoFin"));
-                                if(ini>parseInt(fin)) callback(error);
+                             //   const ini=parseInt(getFieldValue("rangoIni"));
+                             //   const fin=parseInt(getFieldValue("rangoFin"));
+                             //   if(ini>parseInt(fin)) callback(error);
 
                             } else {
                                 // clean error ....
@@ -58,7 +58,7 @@ class  FomularioNumeracion extends Component{
                             >
                             {getFieldDecorator('rangoIni', {                               
                                 rules: [{ required: true, message: "Rango Inicial es Requerido" },
-                                        {validar:this.mayorRangoFinal} 
+                                      //  {validator:this.mayorRangoFinal} 
                                     ],
                             })(
                                 <Input name="rangoIni" prefix={<Icon type="phone" style={{ color: 'rgba(0,0,0,.25)' }} />} type="number" placeholder="Rango Inicial" />
@@ -70,7 +70,7 @@ class  FomularioNumeracion extends Component{
                             <Form.Item>
                             {getFieldDecorator('rangoFin', {
                                 
-                                rules: [  {validar:this.mayorRangoFinal} ,        
+                                rules: [ // {validator:this.mayorRangoFinal} ,        
                                     ],
                             })(
                                 <Input  name="rangoFin" prefix={<Icon type="phone" style={{ color: 'rgba(0,0,0,.25)' }} />} type="number" placeholder="Rango Final" />
