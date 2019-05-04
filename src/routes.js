@@ -2,16 +2,19 @@ import React from "react";
 import {Route,Switch } from "react-router-dom";
 
 import Page404 from "./components/page404";
+import Consulta from "./components/consulta";
+import Registro from "./components/consulta/registro";
 import {Provider} from "react-redux";
-
+import store from "./store";
+import App from "./components/App";
 
 
 const AppRoutes= () => 
                    <Provider store={store}>
                      <App> 
                         <Switch>
-                             <Route exact path="/consulta" component={Page404} />                             
-                             <Route exact path="/consulta/registrar" component={Page404} />
+                             <Route exact path="/consulta" component={()=><Consulta titulo="Consulta Previa" />} />                             
+                             <Route exact path="/consulta/registrar" component={()=><Registro titulo="Registar Consulta Previa" />} />
                              <Route exact path="/consulta/:id/detalle" component={Page404} />                                                      
                             
                              <Route exact path="/programacion" component={Page404} />

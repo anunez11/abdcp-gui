@@ -16,10 +16,8 @@ class App extends Component  {
       <div className="App">
           <Layout style={{ minHeight: '100vh' }}>
                <MenuLateral/>
-               <Contenido body={children} /> 
+               <Contenido body={children}  /> 
           </Layout>
-          
-         
       </div>
     );
   }
