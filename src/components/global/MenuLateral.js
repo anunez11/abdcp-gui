@@ -10,7 +10,7 @@ import {Link} from "react-router-dom";
 
 class   MenuLateral extends Component{
     state = {
-        collapsed: false,
+        collapsed: true,
       };
     
       onCollapse = (collapsed) => {

@@ -48,7 +48,7 @@ const getSolicitudId = (id=0) => {
        
           axios.get(variables.apiBase+"solicitudes/"+id).then(response=>{
                     dispactch( {
-                        type:"GET_SOLICIITUD",
+                        type:"GET_SOLICITUD_ID",
                         data:response.data
                     })
            } );
@@ -56,5 +56,22 @@ const getSolicitudId = (id=0) => {
 
     };
 };
+const addNumeracion=numeracion=>{
+    
+    return {
+        type:"ADD_NUMERACION",
+        data:numeracion
+    };
 
-export {getListaSolicitud,getSolicitudId,registrarSolicitud} ;
+}
+
+const removeNumeracion=numeracion=>{
+    
+    return {
+        type:"REMOVE_NUMERACION",
+        data:numeracion
+    };
+
+}
+
+export {getListaSolicitud,getSolicitudId,registrarSolicitud,addNumeracion,removeNumeracion} ;

@@ -1,0 +1,48 @@
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+import { Row, Col,Card,Button,Badge,Icon} from 'antd';
+import store from "../../store";
+import {getSolicitudId} from "../../action/ActionSolicitud";
+
+class  ListadoNumeracionDetalle extends Component{
+
+    static propTypes ={
+        registro:PropTypes.object.isRequired
+      }
+   
+   
+    
+      
+     onClickActualizar = ()=>{
+ 
+        store.dispatch(getSolicitudId(parseInt(this.props.registro.id)));     
+     }
+
+   render(){
+       console.log("data recividad",this.props);
+       return (<div> 
+                
+       <Card   title="Numeracion"   extra={<Button type="primary" ghost icon="reload" size="small" onClick={this.onClickActualizar}>Refrescar</Button> }>
+                    <Row  gutter={8}>
+                    {this.props.registro.data.map(item =>
+                         
+                    
+                        <Col key={"C"+item.inicioRango} span={6} style={{ marginTop: 8 }} >
+                                
+                                <Button type="primary" ghost icon="mail" size="small" onClick={this.onClickActualizar} /> <Icon type="phone" />  {item.inicioRango}   { item.response.toUpperCase()!=="ACK" ? <Badge count={item.codigoMensaje+"-"+item.response.toUpperCase()} style={{ backgroundColor: '#f5222d' }}   /> :<Badge count={item.codigoMensaje+"-"+item.response.toUpperCase()} style={{ backgroundColor: '#52c41a' }}   /> } 
+                            
+                        </Col> 
+
+
+                    )}
+                    </Row>
+                 </Card>
+              </div>);
+   }
+
+
+
+} 
+export default ListadoNumeracionDetalle;  
+

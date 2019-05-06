@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {Layout,Row,Col } from 'antd';  
+import {Layout,Row,Col,Button } from 'antd';  
 
 
 import {connect} from "react-redux";
@@ -30,7 +30,16 @@ class  Registro extends Component{
     render(){
         return (
             <Layout>
-              <Header style={{ background: '#fff', padding: 0 }} >  <h1  className="tituloEncabezado" >{this.props.titulo}</h1> </Header>
+              <Header style={{ background: '#fff', padding: 0 }} >  
+              <Row>
+                    <Col span={1}  style={{textAlign:"center"}} >
+                        <Button icon="arrow-left"  type="primary" ghost className="backEncabezado" onClick={()=>window.location.href="/consulta"} shape="circle"    />  
+                    </Col>
+                    <Col span={23}>
+                    <h1  style={{fontSize:30}} >     {this.props.titulo}  </h1> 
+                    </Col>
+              </Row>
+              </Header>
               <Content style={{ margin: '0 16px' }}>
                
                 <div style={{margin: '16px 0' , padding: 24, background: '#fff', minHeight: 360 }}>
@@ -58,7 +67,7 @@ class  Registro extends Component{
 
 const mapStateToProps = state => {
     return {    
-      combos: {cedente:state.cedente,tipoServicio:state.tipoServicio ,tipoDocumento:state.tipoDocumento,modalidad:state.modalidad}      
+      combos: {cedente:state.cedente,tipoServicio:state.tipoServicio ,tipoDocumento:state.tipoDocumento,modalidad:state.modalidad,cantidadNumeracion:state.numeracion.length}      
     }
   } 
 export default  connect(    mapStateToProps  )(Registro);

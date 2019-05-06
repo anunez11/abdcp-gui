@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
-import { Card,Form,Row,Col, Icon, Input, Button,Select} from 'antd';
+import store from "../../store";
+import { Card,Form,Row,Col, Icon, Input, Button,Select, Divider} from 'antd';
+import {addNumeracion} from "../../action/ActionSolicitud";
+import ListadoNumeracion from "./numeracionConsulta";
 const Option = Select.Option;
 
 
@@ -14,8 +16,8 @@ class  FomularioNumeracion extends Component{
    
     
     mayorRangoFinal = (rule, value, callback) => {
-                            const { getFieldValue } = this.props.form;
-                            const error='El rango Final debe ser mayor igual que el rango inicial';
+                           // const { getFieldValue } = this.props.form;
+                          //  const error='El rango Final debe ser mayor igual que el rango inicial';
                             if (value!=="" ) { 
 
                              //   const ini=parseInt(getFieldValue("rangoIni"));
@@ -37,6 +39,20 @@ class  FomularioNumeracion extends Component{
                             this.props.form.validateFields((err, values) => {
                               if (!err) {
                                 console.log('Received values of form: ', values);
+                                let numeracionDid=[];
+                                if(values.rangoFin ===undefined) values.rangoFin=values.rangaIni;
+                                for(let i=0;i<parseInt(values.rangoFin) - parseInt(values.rangoIni)+1;i++){
+                                    numeracionDid.push({inicioRango:parseInt(values.rangoIni)+i ,tipoPortabilidadCedente :values.modalidad })
+                                 }
+                                 numeracionDid=numeracionDid.concat(store.getState().numeracion);
+                                 let  hash = {};
+                                 numeracionDid= numeracionDid.filter(function(current) {
+                                                        var exists = !hash[current.inicioRango] || false;
+                                                        hash[current.inicioRango] = true;
+                                                        return exists;
+                                 }); 
+
+                                 store.dispatch(addNumeracion(numeracionDid));
                               }
                             });
                           }
@@ -49,6 +65,7 @@ class  FomularioNumeracion extends Component{
       
   
        return (
+           <div>
         <Card   title={"Numeracion "} >
           <Form layout="horizontal"   onSubmit={this.handleSubmit}   >
             <Row gutter={8}>
@@ -94,7 +111,8 @@ class  FomularioNumeracion extends Component{
                             <Button
                                 type="primary"
                                 icon="plus-circle" 
-                                htmlType="submit"                               
+                                htmlType="submit"  
+
                             >
                             Agregar
                             </Button>                    
@@ -104,6 +122,9 @@ class  FomularioNumeracion extends Component{
                 </Row>
       </Form>              
         </Card>
+           <Divider />
+             <ListadoNumeracion registros={store.getState().numeracion===undefined ?  {data:[]} :{data:store.getState().numeracion}   } />
+         </div>
        );
    }
 

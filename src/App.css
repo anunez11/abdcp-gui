@@ -27,10 +27,21 @@ padding-left: 10px;
 font-size: 30px;
 
 }
-
+.backEncabezado{
+ 
+  margin-bottom: 15px;
+  
+  }
 .textoLineal {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%
+}
+
+.ItemForm{
+  margin-bottom: 0px !important;
+}
+.hiddenFormulario{
+  display: none;
 }

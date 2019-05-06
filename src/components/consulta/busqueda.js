@@ -43,12 +43,12 @@ class  Busqueda extends Component{
                  <RangePicker />
                  </Col>
                  <Col span={2}>
-                 <Button  icon="search">Buscar</Button>
+                 <Button ghost icon="search" type="primary">Buscar</Button>
           
                  </Col>
                  <Col span={2}>
           
-                 <Button type="primary" icon="plus-circle"  onClick={ ()=>window.location.href="/consulta/registrar" }  >Agregar</Button>
+                 <Button type="primary"  icon="plus-circle"  onClick={ ()=>window.location.href="/consulta/registrar" }  >Agregar</Button>
                  </Col>
              </Row>
        );

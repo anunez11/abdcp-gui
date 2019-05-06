@@ -9,6 +9,11 @@ const reducer =(state,action) => {
          ...state,
          departamento:action.data
      }
+ }else if(action.type==="GET_SOLICITUD_ID"){
+    return {
+        ...state,
+        solicitud:{data:[action.data]}
+    }
  } else if(action.type==="GET_SOLICITUD"){
     return {
         ...state,
@@ -40,7 +45,19 @@ const reducer =(state,action) => {
              ...state,
              tipoDocumento:action.data
          }
-     }
+     } else if(action.type==="ADD_NUMERACION"){
+        ///   console.log(" devuelto ", action.data)
+           return {
+               ...state,
+               numeracion:action.data
+           }
+       }else if(action.type==="REMOVE_NUMERACION"){
+    
+        return {
+            ...state,
+            numeracion:state.numeracion.filter(numero=>numero.inicioRango!==action.data.inicioRango)
+        }
+      }
 
 
 return state;
@@ -59,14 +76,14 @@ const inicial={
                 solicitud:{data:[]},
                 programacion:{data:[]},    
                 acreditacion:{data:[]},
-                numeracion:{data:[]}               
+                numeracion:[]               
              };
 
 
 const logger = store => next => action => {
-  // console.log('dispatching',action);
+   console.log('dispatching',action);
     let result = next( action ); 
-  // console.log('next state ',store.getState());
+  console.log('next state ',store.getState());
     return result;
 };
 
