@@ -2,24 +2,25 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {Layout } from 'antd';  
 import Busqueda  from "./busqueda";
-import ListadoConsulta from "./listado";
+import ListadoRetorno from "./listado";
 
 import {connect} from "react-redux";
 import moment from 'moment';
 import {getListaSolicitud} from "../../action/ActionSolicitud";
-import {getListaCedente,getListaServicio} from "../../action/ActionLista";
+import {getListaCedente,getListaServicio,getListaMotivoRetorno} from "../../action/ActionLista";
 import store from "../../store";
 
 
 const { Header, Content, Footer  } = Layout;
-class  Solicitud extends Component{
+class  Retorno extends Component{
     
     constructor(){
         super();
         
         store.dispatch(getListaCedente());
         store.dispatch(getListaServicio());
-        store.dispatch(getListaSolicitud({page:1,limit:10,where:{codigo:"SP",fechaCreacion_betweendate:[moment().startOf('month').format("YYYY-MM-DD"),moment().endOf('month').format("YYYY-MM-DD")]}}));     
+        store.dispatch(getListaMotivoRetorno());
+        store.dispatch(getListaSolicitud({page:1,limit:10,where:{codigo:"SR",fechaCreacion_betweendate:[moment().startOf('month').format("YYYY-MM-DD"),moment().endOf('month').format("YYYY-MM-DD")]}}));     
 
       }
 
@@ -34,7 +35,7 @@ class  Solicitud extends Component{
                
                 <div style={{margin: '16px 0' , padding: 24, background: '#fff', minHeight: 360 }}>
                     <Busqueda  datosBusqueda={this.props.busqueda} />   
-                    <ListadoConsulta registros={this.props.registros}    />
+                    <ListadoRetorno registros={this.props.registros}    />
                  
                 </div>
               </Content>
@@ -51,8 +52,8 @@ class  Solicitud extends Component{
 const mapStateToProps = state => {
     return {
       registros: state.solicitud,
-      busqueda: {cedente:state.cedente,tipoServicio:state.tipoServicio }
+      busqueda: {cedente:state.cedente,tipoServicio:state.tipoServicio,motivo:state.motivoRetorno }
       
     }
   } 
-export default  connect(    mapStateToProps  )(Solicitud);
+export default  connect(    mapStateToProps  )(Retorno);

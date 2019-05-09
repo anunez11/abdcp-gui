@@ -5,7 +5,7 @@ import Busqueda  from "./busqueda";
 import ListadoConsulta from "./listado";
 
 import {connect} from "react-redux";
-
+import moment from 'moment';
 import {getListaSolicitud} from "../../action/ActionSolicitud";
 import {getListaCedente,getListaServicio} from "../../action/ActionLista";
 import store from "../../store";
@@ -19,7 +19,7 @@ class  Consulta extends Component{
         
         store.dispatch(getListaCedente());
         store.dispatch(getListaServicio());
-        store.dispatch(getListaSolicitud());     
+        store.dispatch(getListaSolicitud({page:1,limit:10,where:{codigo:"CP",fechaCreacion_betweendate:[moment().startOf('month').format("YYYY-MM-DD"),moment().endOf('month').format("YYYY-MM-DD")]}}));     
 
       }
 

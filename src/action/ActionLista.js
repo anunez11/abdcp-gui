@@ -81,5 +81,21 @@ const getListaTipoCliente = () => {
     
 
 };
+const getListaMotivoRetorno = () => {
 
-export {getListaDepartamento,getListaModalidad,getListaServicio,getListaCedente,getListaTipoDocumento,getListaTipoCliente} ;
+
+    return dispactch=>{
+        axios.get(variables.apiBase+"lista/listaMotivoRetorno").then(response=>{
+                 dispactch( {
+                     type:"GET_MOTIVO_RETORNO",
+                     data:response.data
+                 })
+        } );
+    };
+
+    
+
+};
+
+
+export {getListaDepartamento,getListaModalidad,getListaServicio,getListaCedente,getListaTipoDocumento,getListaTipoCliente,getListaMotivoRetorno} ;

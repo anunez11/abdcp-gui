@@ -9,11 +9,6 @@ const reducer =(state,action) => {
          ...state,
          departamento:action.data
      }
- }else if(action.type==="GET_SOLICITUD_ID"){
-    return {
-        ...state,
-        solicitud:{data:[action.data]}
-    }
  } else if(action.type==="GET_SOLICITUD"){
     return {
         ...state,
@@ -32,7 +27,13 @@ const reducer =(state,action) => {
              ...state,
              tipoServicio:action.data
          }
-     }
+     } else if(action.type==="GET_MOTIVO_RETORNO"){
+        ///  console.log(" devuelto ", action.data)
+          return {
+              ...state,
+              motivoRetorno:action.data
+          }
+      }
      else if(action.type==="GET_CEDENTE"){
         /// console.log(" devuelto ", action.data)
          return {
@@ -45,7 +46,12 @@ const reducer =(state,action) => {
              ...state,
              tipoDocumento:action.data
          }
-     } else if(action.type==="ADD_NUMERACION"){
+     } else if(action.type==="GET_SOLICITUD_ID"){
+        return {
+            ...state,
+            solicitud:{data:[action.data]}
+        }
+     }else if(action.type==="ADD_NUMERACION"){
         ///   console.log(" devuelto ", action.data)
            return {
                ...state,
@@ -69,6 +75,7 @@ return state;
 const inicial={
                 cedente:[],
                 modalidad:[],
+                motivoRetorno:[],
                 tipoCliente:[],
                 departamento:[],
                 tipoServicio:[],

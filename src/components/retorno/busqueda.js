@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 //import {Layout } from 'antd';  
 import moment from 'moment';
 import {getListaSolicitud} from "../../action/ActionSolicitud";
+import RegistroRetorno from "./registro";
 import store from "../../store";
 import { Row, Col ,Select,Button,DatePicker, Form } from 'antd';
 const {  RangePicker } = DatePicker;
@@ -18,7 +19,7 @@ class  Busqueda extends Component{
       const cedente= this.props.form.getFieldValue("cedente");
       const servicio=this.props.form.getFieldValue("servicio");
       const rango=this.props.form.getFieldValue("rango");
-      let where ={codigo:"CP"};
+      let where ={codigo:"SR"};
       if(cedente!=="") where.cedente=cedente;
       if(servicio!=="") where.tipoServicio=servicio;
       if(rango!==undefined){
@@ -26,8 +27,9 @@ class  Busqueda extends Component{
             where.fechaCreacion_betweendate=[rango[0].format("YYYY-MM-DD"),rango[1].format("YYYY-MM-DD")] ; 
         }
       }
+      //{codigo:"CP",fechaCreacion_betweendate:[moment().startOf('month').format("YYYY-MM-DD"),moment().endOf('month').format("YYYY-MM-DD")]}
 
-         store.dispatch(getListaSolicitud({page:1,limit:10,where:where}));     
+      store.dispatch(getListaSolicitud({page:1,limit:10,where:where}));     
         
       }
 
@@ -37,7 +39,7 @@ class  Busqueda extends Component{
        return (
            <Form onSubmit={this.handleSubmit} >
              <Row gutter={8}>
-                 <Col span={8}>
+                 <Col span={4}>
                  <Form.Item>
                     {getFieldDecorator('cedente', {initialValue:""})(
                         <Select
@@ -48,6 +50,26 @@ class  Busqueda extends Component{
                     >
                         <Option value="">Todos los Cedentes</Option>
                          {this.props.datosBusqueda.cedente.map(item=><Option key={"CD"+item.codigo} value={item.codigo}>{item.descripcion}</Option>)}
+                    </Select> 
+                    )}
+
+                    
+                  </Form.Item>
+                   
+                          
+
+                 </Col>
+                 <Col span={4}>
+                 <Form.Item>
+                    {getFieldDecorator('motivoRetorno', {initialValue:""})(
+                        <Select
+                                          
+                        placeholder="Motivo Retorno"
+                       
+                     
+                    >
+                        <Option value="">Todos los Motivos</Option>
+                         {this.props.datosBusqueda.motivo.map(item=><Option key={"MR"+item.codigo} value={item.codigo}>{item.descripcion}</Option>)}
                     </Select> 
                     )}
 
@@ -72,9 +94,9 @@ class  Busqueda extends Component{
                        </Form.Item> 
 
                  </Col>
-                 <Col span={8}>
+                 <Col span={6}>
                  { getFieldDecorator('rango', {initialValue:[ moment().startOf('month'),moment().endOf('month')]})(
-                      <RangePicker format="YYYY-MM-DD" /> )}
+                      <RangePicker format="YYYY-MM-DD"  style={{marginTop:5}} /> )}
                  </Col>
                  <Col span={2}>
                  <Form.Item>
@@ -83,7 +105,7 @@ class  Busqueda extends Component{
                  </Col>
                  <Col span={2}>
                  <Form.Item>
-                        <Button type="primary"  icon="plus-circle"  onClick={ ()=>window.location.href="/consulta/registrar" }  >Agregar</Button>
+                        <RegistroRetorno />
                  </Form.Item>
                  </Col>
              </Row>

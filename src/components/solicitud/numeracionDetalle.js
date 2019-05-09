@@ -14,6 +14,8 @@ class  ListadoNumeracionDetalle extends Component{
     onClickActualizar = ()=>{ 
         store.dispatch(getSolicitudId(parseInt(this.props.registro.id)));     
     }
+
+
     renderTipoMsg=(codigoMensaje,response)=>{
         console.log("codigoMes",codigoMensaje);
         if(codigoMensaje!==null)
@@ -22,6 +24,9 @@ class  ListadoNumeracionDetalle extends Component{
            }
            
         }
+
+    
+
     render(){
        console.log("data recividad",this.props);
        return (<div> 
@@ -31,8 +36,8 @@ class  ListadoNumeracionDetalle extends Component{
                     {this.props.registro.data.map(item =>
                         <Col key={"C"+item.inicioRango} span={6} style={{ marginTop: 8 }} >                                
                                 <Button type="primary" ghost icon="mail" size="small" onClick={this.onClickActualizar} /> 
-                                <Icon type="phone" />  {item.inicioRango}  
-                                 { this.renderTipoMsg(item.codigoMensaje,item.response) }                             
+                                <Icon type="phone" />  {item.inicioRango} 
+                                  {   this.renderTipoMsg(item.codigoMensaje,item.response)  }                             
                         </Col> 
                     )}
                     </Row>

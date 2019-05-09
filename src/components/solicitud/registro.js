@@ -5,14 +5,14 @@ import {Layout,Row,Col,Button } from 'antd';
 
 import {connect} from "react-redux";
 
-import FomularioConsulta from "./formulario";
+import FomularioSolicitud from "./formulario";
 import FomularioNumeracion from "./fomularioNumeracion";
-import {getListaCedente,getListaServicio,getListaTipoDocumento,getListaModalidad} from "../../action/ActionLista";
+import {getListaCedente,getListaServicio,getListaTipoDocumento,getListaModalidad,getListaDepartamento} from "../../action/ActionLista";
 import store from "../../store";
 
 
 const { Header, Content, Footer  } = Layout;
-class  Registro extends Component{
+class  RegistroSolicitud extends Component{
     
     constructor(){
         super();
@@ -21,6 +21,7 @@ class  Registro extends Component{
         store.dispatch(getListaServicio());
         store.dispatch(getListaTipoDocumento());  
         store.dispatch(getListaModalidad());   
+        store.dispatch(getListaDepartamento());   
 
       }
 
@@ -33,7 +34,7 @@ class  Registro extends Component{
               <Header style={{ background: '#fff', padding: 0 }} >  
               <Row>
                     <Col span={1}  style={{textAlign:"center"}} >
-                        <Button icon="arrow-left"  type="primary" ghost className="backEncabezado" onClick={()=>window.location.href="/consulta"} shape="circle"    />  
+                        <Button icon="arrow-left"  type="primary" ghost className="backEncabezado" onClick={()=>window.location.href="/solicitud"} shape="circle"    />  
                     </Col>
                     <Col span={23}>
                        <h1  style={{fontSize:30}} >     {this.props.titulo}  </h1> 
@@ -44,7 +45,7 @@ class  Registro extends Component{
                 <div style={{margin: '16px 0' , padding: 24, background: '#fff', minHeight: 360 }}>
                 <Row  gutter={16}>
                    <Col  key="formConsulta" span={12}  >
-                          <FomularioConsulta combos={this.props.combos} />
+                          <FomularioSolicitud combos={this.props.combos} />
                     </Col>
                     <Col  key="formNumeracion" span={12}  >
                            <FomularioNumeracion combos={this.props.combos} />
@@ -64,7 +65,7 @@ class  Registro extends Component{
 
 const mapStateToProps = state => {
     return {    
-      combos: {cedente:state.cedente,tipoServicio:state.tipoServicio ,tipoDocumento:state.tipoDocumento,modalidad:state.modalidad,cantidadNumeracion:state.numeracion.length}      
+      combos: {cedente:state.cedente,tipoServicio:state.tipoServicio ,tipoDocumento:state.tipoDocumento,modalidad:state.modalidad,departamento:state.departamento,cantidadNumeracion:state.numeracion.length}      
     }
   } 
-export default  connect(    mapStateToProps  )(Registro);
+export default  connect(    mapStateToProps  )(RegistroSolicitud);

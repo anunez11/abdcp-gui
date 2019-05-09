@@ -19,7 +19,7 @@ const getListaSolicitud = (request={}) => {
     };
 };
 
-const registrarSolicitud = (request={}) => {
+const registrarSolicitud = (request={},codigo="CP") => {
 
     return dispactch=>{   
              
@@ -31,7 +31,8 @@ const registrarSolicitud = (request={}) => {
                         data:response.data
                     });
                     console.log(response.data);
-                    window.location.href="/consulta/"+response.data.id+"/detalle" ;
+                    if(codigo==="CP")window.location.href="/consulta/"+response.data.id+"/detalle" ;
+                    if(codigo==="SP")window.location.href="/solicitud/"+response.data.id+"/detalle" ;
            } );
 
        

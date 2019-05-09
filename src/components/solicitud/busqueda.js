@@ -18,7 +18,7 @@ class  Busqueda extends Component{
       const cedente= this.props.form.getFieldValue("cedente");
       const servicio=this.props.form.getFieldValue("servicio");
       const rango=this.props.form.getFieldValue("rango");
-      let where ={codigo:"CP"};
+      let where ={codigo:"SP"};
       if(cedente!=="") where.cedente=cedente;
       if(servicio!=="") where.tipoServicio=servicio;
       if(rango!==undefined){
@@ -26,8 +26,9 @@ class  Busqueda extends Component{
             where.fechaCreacion_betweendate=[rango[0].format("YYYY-MM-DD"),rango[1].format("YYYY-MM-DD")] ; 
         }
       }
+      //{codigo:"CP",fechaCreacion_betweendate:[moment().startOf('month').format("YYYY-MM-DD"),moment().endOf('month').format("YYYY-MM-DD")]}
 
-         store.dispatch(getListaSolicitud({page:1,limit:10,where:where}));     
+      store.dispatch(getListaSolicitud({page:1,limit:10,where:where}));     
         
       }
 
@@ -83,7 +84,7 @@ class  Busqueda extends Component{
                  </Col>
                  <Col span={2}>
                  <Form.Item>
-                        <Button type="primary"  icon="plus-circle"  onClick={ ()=>window.location.href="/consulta/registrar" }  >Agregar</Button>
+                        <Button type="primary"  icon="plus-circle"  onClick={ ()=>window.location.href="/solicitud/registrar" }  >Agregar</Button>
                  </Form.Item>
                  </Col>
              </Row>
