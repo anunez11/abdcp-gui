@@ -40,13 +40,13 @@ class   MenuLateral extends Component{
                   <Menu.Item key="5"><Link to="/programacion">Programacion</Link></Menu.Item>                  
                 </SubMenu>
                 
-                <Menu.Item key="6">
-                  <Icon type="mail" />
-                  <span><Link to="/mensaje">Mensajes</Link></span>
+                <Menu.Item key="6" >
+                  <Icon type="mail"  onClick={()=>window.location.href="/mensaje"}/>
+                  <span onClick={()=>window.location.href="/mensaje"}>Mensajes</span>
                 </Menu.Item>
-                <Menu.Item key="7">
-                  <Icon type="user" />
-                  <span><Link to="/cliente">Cliente</Link></span>
+                <Menu.Item key="7"   >
+                  <Icon type="user" onClick={()=>window.location.href="/cliente"} />
+                  <span onClick={()=>window.location.href="/cliente"}>Cliente</span>
                 </Menu.Item>
               </Menu>
             </Sider>

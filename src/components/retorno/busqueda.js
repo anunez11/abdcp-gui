@@ -19,9 +19,11 @@ class  Busqueda extends Component{
       const cedente= this.props.form.getFieldValue("cedente");
       const servicio=this.props.form.getFieldValue("servicio");
       const rango=this.props.form.getFieldValue("rango");
+      const motivo =this.props.form.getFieldValue("motivoRetorno");
       let where ={codigo:"SR"};
       if(cedente!=="") where.cedente=cedente;
       if(servicio!=="") where.tipoServicio=servicio;
+      if(motivo!=="") where.motivoRetorno=motivo;
       if(rango!==undefined){
         if(rango.length>0) {
             where.fechaCreacion_betweendate=[rango[0].format("YYYY-MM-DD"),rango[1].format("YYYY-MM-DD")] ; 
@@ -105,7 +107,7 @@ class  Busqueda extends Component{
                  </Col>
                  <Col span={2}>
                  <Form.Item>
-                        <RegistroRetorno />
+                        <RegistroRetorno  combos={this.props.datosBusqueda} />
                  </Form.Item>
                  </Col>
              </Row>

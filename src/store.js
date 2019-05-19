@@ -46,7 +46,25 @@ const reducer =(state,action) => {
              ...state,
              tipoDocumento:action.data
          }
-     } else if(action.type==="GET_SOLICITUD_ID"){
+     } else if(action.type==="GET_MONEDA"){
+        ///   console.log(" devuelto ", action.data)
+           return {
+               ...state,
+               moneda:action.data
+           }
+       } else if(action.type==="GET_ESTADO_FACTURA"){
+        ///   console.log(" devuelto ", action.data)
+           return {
+               ...state,
+               estadoFactura:action.data
+           }
+       } else if(action.type==="GET_ESTADO_SERVICIO"){
+        ///   console.log(" devuelto ", action.data)
+           return {
+               ...state,
+               estadoServicio:action.data
+           }
+       }else if(action.type==="GET_SOLICITUD_ID"){
         return {
             ...state,
             solicitud:{data:[action.data]}
@@ -63,7 +81,57 @@ const reducer =(state,action) => {
             ...state,
             numeracion:state.numeracion.filter(numero=>numero.inicioRango!==action.data.inicioRango)
         }
+      } else if(action.type==="GET_CLIENTE"){
+        return {
+            ...state,
+            cliente:action.data
+        }
+        
+      } else if(action.type==="GET_MENSAJE"){
+        return {
+            ...state,
+            mensaje:action.data
+        }
+        
+      }  else if(action.type==="UPDATE_CLIENTE"){
+        return {
+            ...state,
+            cliente : state.cliente.map(item=>{  if(item.idCliente===action.data.idCliente)  return action.data; else  return item;    }    )
+        }
+        
       }
+      
+      
+      
+      else if(action.type==="GET_CLIENTE_ID"){
+        return {
+            ...state,
+            clienteId:action.data
+        }
+      } else if(action.type==="ADD_CLIENTE"){
+        let lista=[];
+        lista.push(action.data);
+        return {
+            ...state,
+            cliente:lista.concat(state.cliente)
+             }
+      }
+      else if(action.type==="UPDATE_ITEM"){
+        return {
+            ...state,
+            itemSeleccionado:action.data
+        }
+      }
+      else if(action.type==="DELETE_CLIENTE"){
+
+        return {
+            ...state,
+            cliente:state.cliente.filter(item=>item.idCliente!==action.data.idCliente)
+        }
+      }
+      
+
+
 
 
 return state;
@@ -81,9 +149,16 @@ const inicial={
                 tipoServicio:[],
                 tipoDocumento:[],
                 solicitud:{data:[]},
+                cliente:[],
+                mensaje:[],
+                clienteId:{},
                 programacion:{data:[]},    
                 acreditacion:{data:[]},
-                numeracion:[]               
+                numeracion:[],
+                moneda:[],
+                itemSeleccionado:[],
+                estadoServicio:[],
+                estadoFactura:[]                     
              };
 
 

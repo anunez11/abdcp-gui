@@ -38,6 +38,8 @@ const getListaServicio = () => {
 
 };
 
+
+
 const getListaCedente = () => {
 
 
@@ -96,6 +98,48 @@ const getListaMotivoRetorno = () => {
     
 
 };
+const getListaMoneda = () => {
+    return dispactch=>{
+        axios.get(variables.apiBase+"lista/listaMoneda").then(response=>{
+                 dispactch( {
+                     type:"GET_MONEDA",
+                     data:response.data
+                 })
+        } );
+    };
+
+};
+const getListaEstadoFactura = () => {
+    return dispactch=>{
+        axios.get(variables.apiBase+"lista/listaEstadoFactura").then(response=>{
+                 dispactch( {
+                     type:"GET_ESTADO_FACTURA",
+                     data:response.data
+                 })
+        } );
+    };
+
+};
+
+const getListaEstadoServicio = () => {
+    return dispactch=>{
+        axios.get(variables.apiBase+"lista/listaEstadoServicio").then(response=>{
+                 dispactch( {
+                     type:"GET_ESTADO_SERVICIO",
+                     data:response.data
+                 })
+        } );
+    };
+
+};
+
+const setItemSeleccionado = (items=[]) => {
+    return {
+        type:"UPDATE_ITEM",
+        data:items
+      };
+
+};
 
 
-export {getListaDepartamento,getListaModalidad,getListaServicio,getListaCedente,getListaTipoDocumento,getListaTipoCliente,getListaMotivoRetorno} ;
+export {getListaMoneda,setItemSeleccionado,getListaEstadoServicio,getListaEstadoFactura,getListaDepartamento,getListaModalidad,getListaServicio,getListaCedente,getListaTipoDocumento,getListaTipoCliente,getListaMotivoRetorno} ;

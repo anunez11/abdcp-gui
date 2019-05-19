@@ -4,8 +4,10 @@ import {Route,Switch } from "react-router-dom";
 import Page404 from "./components/page404";
 import Consulta from "./components/consulta";
 import Solicitud from "./components/solicitud";
+import Cliente from "./components/cliente";
 import Retorno from "./components/retorno";
 import Registro from "./components/consulta/registro";
+import Mensaje from "./components/mensajes";
 import RegistroSolicitud from "./components/solicitud/registro";
 import  DetalleSolicitudPortabilidad from "./components/solicitud/detalle";
 import  DetalleConsulta from "./components/consulta/detalle";
@@ -24,10 +26,16 @@ const AppRoutes= () =>
                             
                              <Route exact path="/programacion" component={Page404} />
                              <Route exact path="/retorno" component={()=><Retorno  titulo="Solicitud de Retorno"   />} />
+
+                             <Route exact path="/mensaje" component={()=><Mensaje  titulo="Mensajes"   />} />
+
                              <Route exact path="/solicitud" component={()=><Solicitud titulo="Solicitud Portabilidad" />  } />
                              <Route exact path="/solicitud/registrar" component={()=><RegistroSolicitud titulo="Registar Solicitud Portabilidad" />}/>
                              <Route exact path="/solicitud/:id/detalle"  component={(props)=><DetalleSolicitudPortabilidad data={{titulo:"Detalle Solicitud Portabilidad",id:props.match.params.id}} />}  />
                              <Route exact path="/acreditacion" component={Page404} />
+
+                             <Route exact path="/cliente" component={()=><Cliente titulo="Clientes" />}/>
+
                              <Route exact path="/" component={Page404} />
                              <Route component={Page404} />
                          </Switch>
