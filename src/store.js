@@ -128,7 +128,52 @@ const reducer =(state,action) => {
             ...state,
             cliente:state.cliente.filter(item=>item.idCliente!==action.data.idCliente)
         }
-      }
+      }else if(action.type==="GET_ACREDITACION"){
+        return {
+            ...state,
+            acreditacion:action.data
+        }
+        
+      } else if(action.type==="GET_ACREDITACION_ENVIADO"){
+        return {
+            ...state,
+            acreditacion:action.data
+        }
+        
+      } else if(action.type==="GET_PROGRAMACION"){
+        return {
+            ...state,
+            programacion:action.data
+        }
+        
+      } else if(action.type==="DELETE_PROGRAMACION"){
+        return {
+            ...state,
+            programacion:state.programacion.filter(item=>item.idProgramacionPortabilidad!==action.data.idProgramacionPortabilidad)
+        }
+        
+      } else if(action.type==="GET_PROGRAMACION_ENVIADO"){  
+        return {
+            ...state,
+            programacionEnviado:action.data
+        }
+        
+      } else if(action.type==="ADD_PROGRAMACION_ENVIADO"){
+        let lista=[];
+        lista.push(action.data);
+        return {
+            ...state,
+            programacionEnviado:lista.concat(state.programacionEnviado)
+        }
+        
+      }  else if(action.type==="UPDATE_PROGRAMACION_ENVIADO"){
+        return {
+            ...state,
+            programacionEnviado:state.programacionEnviado.map(item=>{  if(item.idProgramacionPortabilidad===action.data.idProgramacionPortabilidad)  return action.data; else  return item;    }    )
+        }
+        
+      } 
+      
       
 
 
@@ -152,8 +197,11 @@ const inicial={
                 cliente:[],
                 mensaje:[],
                 clienteId:{},
-                programacion:{data:[]},    
-                acreditacion:{data:[]},
+                programacion:[],    
+                acreditacion:[],
+                programacionEnviado:[],    
+                acreditacionEnviado:[],
+
                 numeracion:[],
                 moneda:[],
                 itemSeleccionado:[],

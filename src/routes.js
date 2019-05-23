@@ -9,6 +9,8 @@ import Retorno from "./components/retorno";
 import Registro from "./components/consulta/registro";
 import Mensaje from "./components/mensajes";
 import RegistroSolicitud from "./components/solicitud/registro";
+import Programacion from "./components/programacion";
+import Acreditacion from "./components/acreditacion";
 import  DetalleSolicitudPortabilidad from "./components/solicitud/detalle";
 import  DetalleConsulta from "./components/consulta/detalle";
 import {Provider} from "react-redux";
@@ -24,7 +26,7 @@ const AppRoutes= () =>
                              <Route exact path="/consulta/registrar" component={()=><Registro titulo="Registar Consulta Previa" />} />
                              <Route exact path="/consulta/:id/detalle" component={(props)=><DetalleConsulta data={{titulo:"Detalle Consulta Previa",id:props.match.params.id}} />} />                                                      
                             
-                             <Route exact path="/programacion" component={Page404} />
+                             <Route exact path="/programacion" component={()=><Programacion titulo="Programacion Portabilidad" />} />
                              <Route exact path="/retorno" component={()=><Retorno  titulo="Solicitud de Retorno"   />} />
 
                              <Route exact path="/mensaje" component={()=><Mensaje  titulo="Mensajes"   />} />
@@ -32,7 +34,7 @@ const AppRoutes= () =>
                              <Route exact path="/solicitud" component={()=><Solicitud titulo="Solicitud Portabilidad" />  } />
                              <Route exact path="/solicitud/registrar" component={()=><RegistroSolicitud titulo="Registar Solicitud Portabilidad" />}/>
                              <Route exact path="/solicitud/:id/detalle"  component={(props)=><DetalleSolicitudPortabilidad data={{titulo:"Detalle Solicitud Portabilidad",id:props.match.params.id}} />}  />
-                             <Route exact path="/acreditacion" component={Page404} />
+                            <Route exact path="/acreditacion" component={()=><Acreditacion titulo="Acretidacion de Pago de Deuda" /> }/>
 
                              <Route exact path="/cliente" component={()=><Cliente titulo="Clientes" />}/>
 
