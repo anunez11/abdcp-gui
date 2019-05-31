@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import {getListaProgramacionEnviado} from "../../action/ActionProgramacion";
+import {getListaAcreditacionEnviado} from "../../action/ActionAcreditacion";
 import {setItemSeleccionadoEnviado} from "../../action/ActionLista";
 import store from "../../store";
 
-import EnviarMensajeEnviado from "./enviarProgramacionEnviado";
+import ReEnviarMensaje from "./enviarAcreditacionEnviado";
 
 import { Row, Col ,Button, Form, Input,DatePicker } from 'antd';
 const {  RangePicker } = DatePicker;
@@ -39,7 +39,7 @@ class  BusquedaEnviado extends Component{
               }
 
 
-            store.dispatch(getListaProgramacionEnviado({where:where}));
+            store.dispatch(getListaAcreditacionEnviado({where:where}));
       }
 
 
@@ -75,7 +75,7 @@ class  BusquedaEnviado extends Component{
 
                     <Button.Group >
                             <Button ghost icon="search" htmlType="submit" type="primary" >Buscar</Button>
-                            <EnviarMensajeEnviado itemSeleccionado={this.props.datosBusqueda}    disabled={hablitidado} />
+                            <ReEnviarMensaje itemSeleccionado={this.props.datosBusqueda}    disabled={hablitidado} />
                       </Button.Group>       
                  </Form.Item>
                  </Col>

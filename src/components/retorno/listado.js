@@ -2,13 +2,23 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 //import {Layout } from 'antd';  
 //import {Link} from "react-router-dom"; 
-import { Row, Col,Card,Pagination,Icon,Tooltip} from 'antd';
+import { Row, Col,Card,Pagination,Icon,Tooltip,Badge} from 'antd';
 
 class  ListadoRetorno extends Component{
     static propTypes ={
         registros:PropTypes.object.isRequired
       }
-   
+      renderTipoMsg=(codigoMensaje,response)=>{
+        console.log("codigoMes",codigoMensaje);
+            if(codigoMensaje!==null && codigoMensaje!==undefined){
+                if(codigoMensaje.trim()!==""){
+                    return  response!=="ACK"  ? <Badge count={codigoMensaje+"-"+response} style={{ backgroundColor: '#f5222d' }}   /> :  <Badge count={codigoMensaje+"-"+response} style={{ backgroundColor: '#52c41a' }}   />
+                }
+
+            }
+         
+           
+        }
 
    render(){
 
@@ -29,6 +39,7 @@ class  ListadoRetorno extends Component{
                          <div className="textoLineal"><b>Motivo :</b> {item.motivoRetorno} </div> 
                           <Tooltip title= {"Correo :"+ item.correo +" Telefono :"+item.telefono } >  <div className="textoLineal"><b><Icon type="mail" /></b> {item.correo}  <b><Icon type="phone" /></b> {item.telefono}    </div> </Tooltip>                           
                            <div className="textoLineal"><b>Descripcion :</b>{item.descripcion} </div>                             
+                           { this.renderTipoMsg(item.codigoMensaje,item.response) }   
                         </Card>
                     </Col>  )}
               

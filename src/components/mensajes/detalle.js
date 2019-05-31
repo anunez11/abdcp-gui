@@ -45,28 +45,36 @@ class  DetalleMensaje  extends Component{
     }
     
 
-     detalleMsg = (valuesArray,sizelabel=4,sizeValue=20) =>{
+     detalleMsg = (valuesArray,sizelabel=5,sizeValue=19) =>{
              // console.log(" array "+Object.keys(valuesArray));
           //  if(Object.keys(valuesArray).length>0) return (<div></div>);
 
             return Object.keys(valuesArray).map((item, i)=>{
                       if(valuesArray[item]!==null) {   
-                        // console.log("indices "+i)
-                        // console.log("valores"+valuesArray[item])
+    
                         let data;
                          const obj=valuesArray[item];
                          if(obj !== null && typeof obj === 'object'){
-                          console.log("valores 1  ===> "+obj)
-                           data=this.detalleMsg(obj,sizelabel+1,sizeValue-1);
+                         
+                           data=this.detalleMsg(obj,sizelabel,sizeValue);
+                           return (
+                            <Row key={item} gutter={16} >
+                              <Col offset ={1}  sm={23} className="textoLineal ItemMsg"> <Tooltip   title={item}>{item}</Tooltip>  </Col>
+                              <Col  offset ={1} sm={23} >  <Row key={item} gutter={16} >
+                                                                  <Col  offset ={1} sm={23} >{data}</Col>
+                                                           </Row>  
+                              </Col>
+                            </Row>)
                          }else{
-                          console.log("valores 2  ===> "+obj)
+                         
                            data=obj;
+                           return (
+                            <Row key={item} gutter={16} >
+                              <Col sm={sizelabel} className="textoLineal ItemMsg"> <Tooltip   title={item}>{item}</Tooltip>  </Col>
+                              <Col sm={sizeValue} > {data}  </Col>
+                            </Row>)
                          }
-                         return (
-                                <Row key={item} gutter={16} style={{marginTop:5}}>
-                                  <Col sm={sizelabel} className="textoLineal ItemMsg"> <Tooltip   title={item}>{item}</Tooltip>  </Col>
-                                  <Col sm={sizeValue} > {data}  </Col>
-                                </Row>)
+                         
                       }else return (<div></div>)
 
             })
@@ -87,7 +95,7 @@ class  DetalleMensaje  extends Component{
            return (
 
 
-            <div>
+            <span>
               <Button type="primary" ghost size="small" icon="mail"  onClick={this.showModal}>
                       {this.props.btnTxt}
               </Button>
@@ -121,7 +129,7 @@ class  DetalleMensaje  extends Component{
             </Panel>
           </Collapse> 
             </Modal>
-          </div>
+          </span>
            );
       }
 

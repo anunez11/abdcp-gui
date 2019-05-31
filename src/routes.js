@@ -38,7 +38,7 @@ const AppRoutes= () =>
 
                              <Route exact path="/cliente" component={()=><Cliente titulo="Clientes" />}/>
 
-                             <Route exact path="/" component={Page404} />
+                             <Route exact path="/"  component={()=><Consulta titulo="Consulta Previa" />} />
                              <Route component={Page404} />
                          </Switch>
                      </App>

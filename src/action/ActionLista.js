@@ -140,6 +140,23 @@ const setItemSeleccionado = (items=[]) => {
       };
 
 };
+const setItemSeleccionadoEnviado = (items=[]) => {
+    return {
+        type:"UPDATE_ITEM_ENVIADO",
+        data:items
+      };
 
+};
+const getListaTipoMensaje = () => {
+    return dispactch=>{
+        axios.get(variables.apiBase+"lista/listaTipoMensaje").then(response=>{
+                 dispactch( {
+                     type:"GET_TIPO_MENSAJE",
+                     data:response.data
+                 })
+        } );
+    };
 
-export {getListaMoneda,setItemSeleccionado,getListaEstadoServicio,getListaEstadoFactura,getListaDepartamento,getListaModalidad,getListaServicio,getListaCedente,getListaTipoDocumento,getListaTipoCliente,getListaMotivoRetorno} ;
+};
+
+export {getListaMoneda,setItemSeleccionado,setItemSeleccionadoEnviado,getListaTipoMensaje,getListaEstadoServicio,getListaEstadoFactura,getListaDepartamento,getListaModalidad,getListaServicio,getListaCedente,getListaTipoDocumento,getListaTipoCliente,getListaMotivoRetorno} ;

@@ -9,7 +9,17 @@ class  ListadoConsulta extends Component{
         registros:PropTypes.object.isRequired
       }
    
+      renderTipoMsg=(codigoMensaje,response)=>{
+        console.log("codigoMes",codigoMensaje);
+            if(codigoMensaje!==null && codigoMensaje!==undefined){
+                if(codigoMensaje.trim()!==""){
+                    return  response!=="ACK"  ? <Badge count={codigoMensaje+"-"+response} style={{ backgroundColor: '#f5222d' }}   /> :  <Badge count={codigoMensaje+"-"+response} style={{ backgroundColor: '#52c41a' }}   />
+                }
 
+            }
+         
+           
+        }
    render(){
 
        
@@ -30,6 +40,7 @@ class  ListadoConsulta extends Component{
                            
                            <div className="textoLineal"><b>Descripcion :</b>{item.descripcion} </div>   
                            <Link  to={"/consulta/"+item.id+"/detalle"}>Ver Detalle <Icon type="plus-circle" /> </Link>
+                           { this.renderTipoMsg(item.codigoMensaje,item.response) }   
                         </Card>
                     </Col>  )}
               

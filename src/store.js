@@ -93,6 +93,12 @@ const reducer =(state,action) => {
             mensaje:action.data
         }
         
+      } else if(action.type==="GET_TIPO_MENSAJE"){
+        return {
+            ...state,
+            tipoMensaje:action.data
+        }
+        
       }  else if(action.type==="UPDATE_CLIENTE"){
         return {
             ...state,
@@ -122,6 +128,12 @@ const reducer =(state,action) => {
             itemSeleccionado:action.data
         }
       }
+      else if(action.type==="UPDATE_ITEM_ENVIADO"){
+        return {
+            ...state,
+            itemSeleccionadoEnviado:action.data
+        }
+      }
       else if(action.type==="DELETE_CLIENTE"){
 
         return {
@@ -137,7 +149,7 @@ const reducer =(state,action) => {
       } else if(action.type==="GET_ACREDITACION_ENVIADO"){
         return {
             ...state,
-            acreditacion:action.data
+            acreditacionEnviado:action.data
         }
         
       } else if(action.type==="GET_PROGRAMACION"){
@@ -172,7 +184,34 @@ const reducer =(state,action) => {
             programacionEnviado:state.programacionEnviado.map(item=>{  if(item.idProgramacionPortabilidad===action.data.idProgramacionPortabilidad)  return action.data; else  return item;    }    )
         }
         
+      }  else if(action.type==="DELETE_ACREDITACION"){
+        return {
+            ...state,
+            acreditacion:state.acreditacion.filter(item=>item.idAcreditacionPago!==action.data.idAcreditacionPago)
+        }
+        
+      } else if(action.type==="GET_ACREDITACION_ENVIADO"){  
+        return {
+            ...state,
+            acreditacionEnviado:action.data
+        }
+        
+      } else if(action.type==="ADD_ACREDITACION_ENVIADO"){
+        let lista=[];
+        lista.push(action.data);
+        return {
+            ...state,
+            acreditacionEnviado:lista.concat(state.acreditacionEnviado)
+        }
+        
+      }  else if(action.type==="UPDATE_ACREDITACION_ENVIADO"){
+        return {
+            ...state,
+            acreditacionEnviado:state.acreditacionEnviado.map(item=>{  if(item.idAcreditacionPago===action.data.idAcreditacionPago)  return action.data; else  return item;    }    )
+        }
+        
       } 
+      
       
       
 
@@ -196,15 +235,16 @@ const inicial={
                 solicitud:{data:[]},
                 cliente:[],
                 mensaje:[],
+                tipoMensaje:[],
                 clienteId:{},
                 programacion:[],    
                 acreditacion:[],
                 programacionEnviado:[],    
                 acreditacionEnviado:[],
-
                 numeracion:[],
                 moneda:[],
                 itemSeleccionado:[],
+                itemSeleccionadoEnviado:[],
                 estadoServicio:[],
                 estadoFactura:[]                     
              };

@@ -89,7 +89,7 @@ class  EnviarMensajeEnviado  extends Component{
                      
                    
                      <Col  span={24}  >
-                               <Form.Item label="Fecha de Ejecucion de Portabilidad" className="ItemForm" > 
+                               <Form.Item label="Fecha de Ejecucion de Portabilidadddd" className="ItemForm" > 
                                 {
                                         getFieldDecorator("fechaProgamadaEjecucion",{rules: [{ required: true, message: "La Fecha es requerida" }] })(
 

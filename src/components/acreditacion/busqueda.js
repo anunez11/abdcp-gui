@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
-import {getListaProgramacionEnviado} from "../../action/ActionProgramacion";
-import {setItemSeleccionadoEnviado} from "../../action/ActionLista";
+
+import {getListaAcreditacion} from "../../action/ActionAcreditacion";
+import {setItemSeleccionado} from "../../action/ActionLista";
 import store from "../../store";
 
-import EnviarMensajeEnviado from "./enviarProgramacionEnviado";
+import EnviarMensaje from "./enviarAcreditacion";
 
-import { Row, Col ,Button, Form, Input,DatePicker } from 'antd';
-const {  RangePicker } = DatePicker;
+import { Row, Col ,Button, Form, Input } from 'antd';
 
-class  BusquedaEnviado extends Component{
+
+class  Busqueda extends Component{
    
         constructor(){
             super();
-            store.dispatch(setItemSeleccionadoEnviado());
+            store.dispatch(setItemSeleccionado());
         }
 
         static propTypes ={
@@ -24,7 +24,6 @@ class  BusquedaEnviado extends Component{
         handleSubmit = (e) => {
             e.preventDefault(); 
             const rango=this.props.form.getFieldValue("rango");
-            const rangoFecha=this.props.form.getFieldValue("rangoFecha");
             let where ={}; 
             if(rango!=="") {
                 let numeros=rango.split("-");
@@ -32,14 +31,7 @@ class  BusquedaEnviado extends Component{
                 if(numeros.length>1) where.numero_between=[numeros[0],numeros[1]]; 
                 else where.numero_llike=numeros[0];
             } 
-            if(rangoFecha!==undefined){
-                if(rangoFecha.length>0) {
-                    where.fechaEnvio_betweendate=[rangoFecha[0].format("YYYY-MM-DD"),rangoFecha[1].format("YYYY-MM-DD")] ; 
-                }
-              }
-
-
-            store.dispatch(getListaProgramacionEnviado({where:where}));
+            store.dispatch(getListaAcreditacion({where:where}));
       }
 
 
@@ -50,17 +42,7 @@ class  BusquedaEnviado extends Component{
            <Form onSubmit={this.handleSubmit} >
              <Row gutter={8}>
              
-               <Col span={5} offset={10}>
-                 <Form.Item>
-                 { getFieldDecorator('rangoFecha', {initialValue:[ moment().startOf('month'),moment().endOf('month')]})(
-                      <RangePicker format="YYYY-MM-DD" /> )}
-                      </Form.Item> 
-                 </Col>
-                       
-
-
-
-                    <Col span={4} >
+                 <Col span={4} offset={15}>
                  <Form.Item>
                      { getFieldDecorator('rango', {initialValue:""})(
                        <Input placeholder="Rango Ini - Rango Fin" />
@@ -75,7 +57,7 @@ class  BusquedaEnviado extends Component{
 
                     <Button.Group >
                             <Button ghost icon="search" htmlType="submit" type="primary" >Buscar</Button>
-                            <EnviarMensajeEnviado itemSeleccionado={this.props.datosBusqueda}    disabled={hablitidado} />
+                            <EnviarMensaje itemSeleccionado={this.props.datosBusqueda}    disabled={hablitidado} />
                       </Button.Group>       
                  </Form.Item>
                  </Col>
@@ -87,4 +69,4 @@ class  BusquedaEnviado extends Component{
 
        
 }
-export default  Form.create({ name: 'horizontal_programacion_enviado' })(BusquedaEnviado);
+export default  Form.create({ name: 'horizontal_programacion' })(Busqueda);

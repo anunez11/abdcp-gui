@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Row, Col,Card,Button,Badge,Icon} from 'antd';
 import store from "../../store";
 import {getSolicitudId} from "../../action/ActionSolicitud";
+import DetalleMensaje from "../../components/mensajes/detalle";
 
 class  ListadoNumeracionDetalle extends Component{
 
@@ -18,10 +19,12 @@ class  ListadoNumeracionDetalle extends Component{
 
     renderTipoMsg=(codigoMensaje,response)=>{
         console.log("codigoMes",codigoMensaje);
-        if(codigoMensaje!==null)
-           if(codigoMensaje.trim()!==""){
-               return  response!=="ACK"  ? <Badge count={codigoMensaje+"-"+response} style={{ backgroundColor: '#f5222d' }}   /> :  <Badge count={codigoMensaje+"-"+response} style={{ backgroundColor: '#52c41a' }}   />
-           }
+        if(codigoMensaje!==null && codigoMensaje!==undefined){
+            if(codigoMensaje.trim()!==""){
+                return  response!=="ACK"  ? <Badge count={codigoMensaje+"-"+response} style={{ backgroundColor: '#f5222d' }}   /> :  <Badge count={codigoMensaje+"-"+response} style={{ backgroundColor: '#52c41a' }}   />
+            }
+        }
+          
            
         }
 
@@ -35,7 +38,7 @@ class  ListadoNumeracionDetalle extends Component{
                     <Row  gutter={8}>
                     {this.props.registro.data.map(item =>
                         <Col key={"C"+item.inicioRango} span={6} style={{ marginTop: 8 }} >                                
-                                <Button type="primary" ghost icon="mail" size="small" onClick={this.onClickActualizar} /> 
+                                {item.mensaje!==null ? <DetalleMensaje   detalle={item.mensaje} /> :<span></span> }  
                                 <Icon type="phone" />  {item.inicioRango} 
                                   {   this.renderTipoMsg(item.codigoMensaje,item.response)  }                             
                         </Col> 

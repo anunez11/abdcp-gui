@@ -5,7 +5,7 @@ import moment from 'moment';
 import {getListaSolicitud} from "../../action/ActionSolicitud";
 import RegistroRetorno from "./registro";
 import store from "../../store";
-import { Row, Col ,Select,Button,DatePicker, Form } from 'antd';
+import { Row, Col ,Select,Button,DatePicker, Form,Input } from 'antd';
 const {  RangePicker } = DatePicker;
 const Option = Select.Option;
 class  Busqueda extends Component{
@@ -17,12 +17,13 @@ class  Busqueda extends Component{
       handleSubmit = (e) => {
         e.preventDefault();
       const cedente= this.props.form.getFieldValue("cedente");
-      const servicio=this.props.form.getFieldValue("servicio");
+
       const rango=this.props.form.getFieldValue("rango");
       const motivo =this.props.form.getFieldValue("motivoRetorno");
+      const rangoNumero=this.props.form.getFieldValue("numero");
       let where ={codigo:"SR"};
       if(cedente!=="") where.cedente=cedente;
-      if(servicio!=="") where.tipoServicio=servicio;
+     
       if(motivo!=="") where.motivoRetorno=motivo;
       if(rango!==undefined){
         if(rango.length>0) {
@@ -30,7 +31,12 @@ class  Busqueda extends Component{
         }
       }
       //{codigo:"CP",fechaCreacion_betweendate:[moment().startOf('month').format("YYYY-MM-DD"),moment().endOf('month').format("YYYY-MM-DD")]}
-
+      if(rangoNumero!=="") {
+        let numeros=rangoNumero.split("-");
+        console.log(numeros);
+         if(numeros.length>1) where.numero_between=[numeros[0],numeros[1]]; 
+         else where.numero=numeros[0];
+      }
       store.dispatch(getListaSolicitud({page:1,limit:10,where:where}));     
         
       }
@@ -83,14 +89,8 @@ class  Busqueda extends Component{
                  </Col>
                  <Col span={4}>
                  <Form.Item>
-                     { getFieldDecorator('servicio', {initialValue:""})(
-                        <Select
-                            placeholder="Servicio"
-                            style={{ width: 200 }}
-                        >
-                                <Option value="">Todos los Servicios</Option>
-                            {this.props.datosBusqueda.tipoServicio.map(item=><Option key={"TS"+item.codigo} value={item.codigo}>{item.descripcion}</Option>)}
-                        </Select>
+                    { getFieldDecorator('numero', {initialValue:""})(
+                       <Input placeholder="Rango Ini - Rango Fin" />
                      )}
 
                        </Form.Item> 

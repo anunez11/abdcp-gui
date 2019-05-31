@@ -3,18 +3,19 @@ import PropTypes from 'prop-types';
 //import {Layout } from 'antd';  
 //import {Link} from "react-router-dom"; 
 import {Table} from 'antd';
+import DetalleImagen from "./detalleImagen";
 
 
 import {setItemSeleccionadoEnviado} from "../../action/ActionLista";
 import store from "../../store";
-
+//import variables from "../../variable";
 const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
       console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
       store.dispatch(setItemSeleccionadoEnviado(selectedRows));
     }
   };
-class  ListadoEnviadoPortabilidad extends Component{
+class  ListadoEnviadoAcreditacion extends Component{
     static propTypes ={
         registros:PropTypes.array.isRequired
         
@@ -37,6 +38,12 @@ class  ListadoEnviadoPortabilidad extends Component{
         dataIndex: 'numero',       
         key:"C_4"
        
+      }, {
+        title: 'Fecha Limite Envio',
+        dataIndex: 'fechaLimiteEnvio',
+       
+        key:"C_6"
+       
       },{
         title: 'Id Mensaje',
         dataIndex: 'idMensaje',       
@@ -47,18 +54,30 @@ class  ListadoEnviadoPortabilidad extends Component{
         dataIndex: 'idProceso',       
         key:"C_8"
        
-      }, {
-        title: 'Fecha Limite Ejecucion',
-        dataIndex: 'fechaLimiteEjecucion',
-      
-        key:"C_5"
-        
-      }, {
-        title: 'Fecha Limite Envio',
-        dataIndex: 'fechaLimiteEnvio',
+      },{
+        title: 'Entidad',
+        dataIndex: 'entidadPago',       
+        key:"C_9"
        
-        key:"C_6"
+      },{
+        title: 'Fecha Pago',
+        dataIndex: 'fechaPago',       
+        key:"C_10"
        
+      },{
+        title: 'Monto S/.',
+        dataIndex: 'monto',       
+        key:"C_11"
+       
+      },{
+        title: 'Nro Transaccion',
+        dataIndex: 'numeroTrasaccion',       
+        key:"C_12"
+       
+      },{
+        title: 'Imagen',        
+        key:"C_13",
+        render: (value, row, index) => <DetalleImagen detalle={row}  />
       }
     
     ]; 
@@ -69,7 +88,7 @@ class  ListadoEnviadoPortabilidad extends Component{
        return (
          
             
-                  <Table   rowKey={record => record.idProgramacionPortabilidad}  rowSelection={rowSelection} columns={columns} dataSource={datos}  size="small"  />    
+                  <Table   rowKey={record => record.idAcreditacionPago}  rowSelection={rowSelection} columns={columns} dataSource={datos}  size="small"  />    
              
        );
    }
@@ -77,4 +96,4 @@ class  ListadoEnviadoPortabilidad extends Component{
        
 };
 
-export default ListadoEnviadoPortabilidad;
+export default ListadoEnviadoAcreditacion;

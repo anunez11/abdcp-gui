@@ -112,7 +112,7 @@ class  ListadoMensaje extends Component{
        return (
          
             
-                  <Table   rowKey={record => record.id}   columns={columns} dataSource={datos}  size="small"  />    
+                  <Table   rowKey={record => record.id}   columns={columns} dataSource={datos}  size="small"  pagination={{ defaultPageSize: 10, showSizeChanger: true,showTotal:(total,range)=>' Registros  '+total, pageSizeOptions: ['10', '20', '30']}} />    
              
        );
    }

@@ -46,7 +46,7 @@ class  Programacion extends Component{
                                  <ListadoPortabilidad registros={this.props.registros} />
                             </TabPane>
                             <TabPane tab="ENVIADOS" key="2t">
-                                    <BusquedaEnviado datosBusqueda={this.props.itemSeleccionado} /> 
+                                    <BusquedaEnviado datosBusqueda={this.props.itemSeleccionadoEnviado} /> 
                                    <ListadoEnviadoPortabilidad registros={this.props.registrosEnviado} />
                             </TabPane>
                           
@@ -68,7 +68,8 @@ const mapStateToProps = state => {
     return {
       registros: state.programacion ,
       registrosEnviado:state.programacionEnviado ,
-      itemSeleccionado:state.itemSeleccionado 
+      itemSeleccionado:state.itemSeleccionado ,
+      itemSeleccionadoEnviado:state.itemSeleccionadoEnviado 
       
     }
   } 
