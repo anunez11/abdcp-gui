@@ -146,9 +146,7 @@ class  FomularioConsulta extends Component{
                          
                 <Form.Item>
                      <ButtonGroup>
-                     <Button type="primary" ghost icon="arrow-left"  htmlType="button" onClick={()=>window.location.href='/consulta' } >
-                           Cancelar
-                        </Button>
+                
                      <Button type="primary" icon="save" htmlType="submit" >
                         Registrar
                         </Button>

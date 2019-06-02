@@ -9,7 +9,7 @@ import FomularioSolicitud from "./formulario";
 import FomularioNumeracion from "./fomularioNumeracion";
 import {getListaCedente,getListaServicio,getListaTipoDocumento,getListaModalidad,getListaDepartamento} from "../../action/ActionLista";
 import store from "../../store";
-
+import {Link} from "react-router-dom"; 
 
 const { Header, Content, Footer  } = Layout;
 class  RegistroSolicitud extends Component{
@@ -34,7 +34,10 @@ class  RegistroSolicitud extends Component{
               <Header style={{ background: '#fff', padding: 0 }} >  
               <Row>
                     <Col span={1}  style={{textAlign:"center"}} >
-                        <Button icon="arrow-left"  type="primary" ghost className="backEncabezado" onClick={()=>window.location.href="/solicitud"} shape="circle"    />  
+                      <Link to="/solicitud">
+                          <Button icon="arrow-left"  type="primary" ghost className="backEncabezado"  shape="circle"    />  
+                      </Link>
+                        
                     </Col>
                     <Col span={23}>
                        <h1  style={{fontSize:30}} >     {this.props.titulo}  </h1> 

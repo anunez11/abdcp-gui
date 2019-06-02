@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 //import {Layout } from 'antd';  
-
+import {Link} from "react-router-dom"; 
 import moment from 'moment';
 import {getListaSolicitud} from "../../action/ActionSolicitud";
 import store from "../../store";
@@ -99,7 +99,9 @@ class  Busqueda extends Component{
                  <Form.Item>
                         <Button.Group>
                         <Button ghost icon="search" htmlType="submit" type="primary">Buscar</Button>
-                        <Button type="primary"  icon="plus-circle"  onClick={ ()=>window.location.href="/solicitud/registrar" }  >Agregar</Button>
+                        <Link to= "/solicitud/registrar">
+                              <Button type="primary"  icon="plus-circle"    >Agregar</Button>
+                        </Link>
                         </Button.Group>
                         
                  </Form.Item>

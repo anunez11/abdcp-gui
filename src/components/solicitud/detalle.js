@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {Layout,Button,Row,Col } from 'antd';  
-
+import {Link} from "react-router-dom"; 
 import store from "../../store";
 import {connect} from "react-redux";
 import {getSolicitudId} from "../../action/ActionSolicitud";
@@ -28,7 +28,9 @@ class  DetalleSolicitud extends Component{
               <Header style={{ background: '#fff', padding: 0 }} > 
                 <Row>
                     <Col span={1}  style={{textAlign:"center"}} >
-                        <Button icon="arrow-left"  type="primary" ghost className="backEncabezado" onClick={()=>window.location.href="/solicitud"} shape="circle"    />  
+                        <Link to="/solicitud">
+                            <Button icon="arrow-left"  type="primary" ghost className="backEncabezado" shape="circle"    />
+                        </Link>                          
                     </Col>
                     <Col span={23}>
                          <h1  style={{fontSize:30}} >     {this.props.data.titulo}  </h1> 

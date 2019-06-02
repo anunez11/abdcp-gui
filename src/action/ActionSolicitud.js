@@ -31,8 +31,8 @@ const registrarSolicitud = (request={},codigo="CP") => {
                         data:response.data
                     });
                     console.log(response.data);
-                    if(codigo==="CP")window.location.href="/consulta/"+response.data.id+"/detalle" ;
-                    if(codigo==="SP")window.location.href="/solicitud/"+response.data.id+"/detalle" ;
+                    if(codigo==="CP")window.location.href=variables.contexto+"consulta/"+response.data.id+"/detalle" ;
+                    if(codigo==="SP")window.location.href=variables.contexto+"solicitud/"+response.data.id+"/detalle" ;
            } );
 
        

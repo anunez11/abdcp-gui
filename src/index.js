@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-
+import variables from "./variable";
 import * as serviceWorker from './serviceWorker';
 
 import { BrowserRouter as Router } from "react-router-dom";
 import AppRoutes from './routes';
 ReactDOM.render(
     
-    <Router>
+    <Router basename={variables.contexto}>
          <AppRoutes/>
     </Router>
     , document.getElementById('root'));

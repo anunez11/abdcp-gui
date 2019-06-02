@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import {getListaSolicitud} from "../../action/ActionSolicitud";
 import store from "../../store";
+import {Link} from "react-router-dom"; 
 import { Row, Col ,Select,Button,DatePicker, Form,Input } from 'antd';
 
 const {  RangePicker } = DatePicker;
@@ -102,7 +103,10 @@ class  Busqueda extends Component{
                  <Form.Item>
                         <Button.Group>
                         <Button ghost icon="search" htmlType="submit" type="primary">Buscar</Button>
-                        <Button type="primary"  icon="plus-circle"  onClick={ ()=>window.location.href="/consulta/registrar" }  >Agregar</Button>
+                        <Link to="/consulta/registrar">
+                        <Button type="primary"  icon="plus-circle"  >Agregar</Button>
+                        </Link>
+                        
                         </Button.Group>
                         
                  </Form.Item>

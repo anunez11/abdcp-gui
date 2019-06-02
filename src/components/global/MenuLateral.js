@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Layout, Menu,Icon} from 'antd';
 import {Link} from "react-router-dom"; 
 
-
+import variables from "../../variable";
 
 
   const {Sider} = Layout;
@@ -26,7 +26,9 @@ class   MenuLateral extends Component{
               collapsed={this.state.collapsed}
               onCollapse={this.onCollapse}
             >
-              <div className="logo" />
+              <div className="logo" >
+                <img src={variables.contexto+"logo.png"} className="imagenLogo" />
+              </div>
               <Menu theme="dark" mode="inline">
              
                 <SubMenu  defaultSelectedKeys={['1']}
@@ -39,15 +41,24 @@ class   MenuLateral extends Component{
                   <Menu.Item key="4"><Link to="/acreditacion">Acreditacion</Link></Menu.Item>
                   <Menu.Item key="5"><Link to="/programacion">Programacion</Link></Menu.Item>                  
                 </SubMenu>
-                
-                <Menu.Item key="6" >
-                  <Icon type="mail"  onClick={()=>window.location.href="/mensaje"}/>
-                  <span onClick={()=>window.location.href="/mensaje"}>Mensajes</span>
+                <SubMenu  
+                  key="sub2"
+                  title={<span><Icon type="mail" /><span>Mensajes</span></span>}
+                >
+                <Menu.Item key="6" >                
+                  <Link to="/mensaje">Mensajes</Link>
                 </Menu.Item>
+                </SubMenu>
+                <SubMenu  
+                  key="sub3"
+                  title={<span><Icon type="user" /><span>Cliente</span></span>}
+                >
                 <Menu.Item key="7"   >
-                  <Icon type="user" onClick={()=>window.location.href="/cliente"} />
-                  <span onClick={()=>window.location.href="/cliente"}>Cliente</span>
+
+                  <Link to="/cliente">Cliente</Link>
                 </Menu.Item>
+
+                </SubMenu>
               </Menu>
             </Sider>
            

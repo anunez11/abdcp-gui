@@ -18,8 +18,12 @@
 
 .logo {
   height: 32px;
-  background: rgba(255,255,255,.2);
+  background:#fff;
   margin: 16px;
+}
+.imagenLogo{
+  margin: 5%;
+  height: 90%;
 }
 
 .tituloEncabezado{
