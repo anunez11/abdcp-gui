@@ -27,6 +27,8 @@ class  Solicitud extends Component{
         titulo:PropTypes.string.isRequired
       }
     render(){
+
+        console.log("registros index",this.props.registros); 
         return (
             <Layout>
               <Header style={{ background: '#fff', padding: 0 }} >  <h1  className="tituloEncabezado" >{this.props.titulo}</h1> </Header>

@@ -11,6 +11,17 @@ const getListaDepartamento = () => {
            } );
     };
 };
+const getListaMotivoErrorRechazo = () => {
+
+    return dispactch=>{
+           axios.get(variables.apiBase+"lista/listaError").then(response=>{
+                    dispactch( {
+                        type:"GET_ERROR",
+                        data:response.data
+                    })
+           } );
+    };
+};
 
 
 const getListaModalidad= () => {
@@ -159,4 +170,4 @@ const getListaTipoMensaje = () => {
 
 };
 
-export {getListaMoneda,setItemSeleccionado,setItemSeleccionadoEnviado,getListaTipoMensaje,getListaEstadoServicio,getListaEstadoFactura,getListaDepartamento,getListaModalidad,getListaServicio,getListaCedente,getListaTipoDocumento,getListaTipoCliente,getListaMotivoRetorno} ;
+export {getListaMotivoErrorRechazo,getListaMoneda,setItemSeleccionado,setItemSeleccionadoEnviado,getListaTipoMensaje,getListaEstadoServicio,getListaEstadoFactura,getListaDepartamento,getListaModalidad,getListaServicio,getListaCedente,getListaTipoDocumento,getListaTipoCliente,getListaMotivoRetorno} ;

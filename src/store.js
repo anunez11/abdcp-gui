@@ -10,6 +10,8 @@ const reducer =(state,action) => {
          departamento:action.data
      }
  } else if(action.type==="GET_SOLICITUD"){
+
+    console.log(" devuelto solicitud ", action.data)
     return {
         ...state,
         solicitud:action.data
@@ -67,7 +69,7 @@ const reducer =(state,action) => {
        }else if(action.type==="GET_SOLICITUD_ID"){
         return {
             ...state,
-            solicitud:{data:[action.data]}
+            solicitud:[action.data]
         }
      }else if(action.type==="ADD_NUMERACION"){
         ///   console.log(" devuelto ", action.data)
@@ -190,7 +192,14 @@ const reducer =(state,action) => {
             acreditacion:state.acreditacion.filter(item=>item.idAcreditacionPago!==action.data.idAcreditacionPago)
         }
         
-      } else if(action.type==="GET_ACREDITACION_ENVIADO"){  
+      } else if(action.type==="GET_ERROR"){  
+        return {
+            ...state,
+            error:action.data
+        }
+        
+      }
+      else if(action.type==="GET_ACREDITACION_ENVIADO"){  
         return {
             ...state,
             acreditacionEnviado:action.data
@@ -232,7 +241,7 @@ const inicial={
                 departamento:[],
                 tipoServicio:[],
                 tipoDocumento:[],
-                solicitud:{data:[]},
+                solicitud:[],
                 cliente:[],
                 mensaje:[],
                 tipoMensaje:[],
@@ -246,14 +255,15 @@ const inicial={
                 itemSeleccionado:[],
                 itemSeleccionadoEnviado:[],
                 estadoServicio:[],
-                estadoFactura:[]                     
+                estadoFactura:[]  ,
+                error:{}                   
              };
 
 
 const logger = store => next => action => {
-   console.log('dispatching',action);
+  // console.log('dispatching',action);
     let result = next( action ); 
-  console.log('next state ',store.getState());
+ /// console.log('next state ',store.getState());
     return result;
 };
 

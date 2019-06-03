@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 //import {Layout } from 'antd';  
 //import {Link} from "react-router-dom"; .
-
+import {connect} from "react-redux";
 import { Button, Modal,Collapse,Badge,Row,Col,Tooltip} from 'antd';
 const Panel = Collapse.Panel;
 
@@ -57,6 +57,9 @@ class  DetalleMensaje  extends Component{
                          if(obj !== null && typeof obj === 'object'){
                          
                            data=this.detalleMsg(obj,sizelabel,sizeValue);
+
+
+
                            return (
                             <Row key={item} gutter={16} >
                               <Col offset ={1}  sm={23} className="textoLineal ItemMsg"> <Tooltip   title={item}>{item}</Tooltip>  </Col>
@@ -66,8 +69,15 @@ class  DetalleMensaje  extends Component{
                               </Col>
                             </Row>)
                          }else{
-                         
-                           data=obj;
+                           
+                           // revisamo si es  CausaRechazo CausaNoIntegridad
+                           if(item==="CausaRechazo" || item==="CausaNoIntegridad" ){
+                             console.log("errores",this.props.errores)
+                             console.log("errores data",this.props.errores[obj])
+                             console.log("data",obj)
+                                data=obj+this.props.errores[obj];
+                           }                          
+                           else data=obj;
                            return (
                             <Row key={item} gutter={16} >
                               <Col sm={sizelabel} className="textoLineal ItemMsg"> <Tooltip   title={item}>{item}</Tooltip>  </Col>
@@ -135,4 +145,13 @@ class  DetalleMensaje  extends Component{
 
  } 
 
- export  default DetalleMensaje;
+ 
+
+ const mapStateToProps = state => {
+  return {
+    
+   
+    errores:state.error 
+  }
+} 
+export default  connect(    mapStateToProps  )(DetalleMensaje);

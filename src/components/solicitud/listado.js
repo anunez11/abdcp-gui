@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 //import {Layout } from 'antd';  
 import {Link} from "react-router-dom"; 
-import { Row, Col,Card,Pagination,Badge,Icon,Tooltip} from 'antd';
+import { Badge,Icon,Tooltip,Table} from 'antd';
 
 class  ListadoConsulta extends Component{
     static propTypes ={
-        registros:PropTypes.object.isRequired
+        registros:PropTypes.array.isRequired
       }
       renderTipoMsg=(codigoMensaje,response)=>{
         console.log("codigoMes",codigoMensaje);
@@ -21,34 +21,87 @@ class  ListadoConsulta extends Component{
         }
 
    render(){
-
+    const columns = [
+        {
+            title: 'Accion',
+            dataIndex: '', 
+            key:"C_1",
+            render :(value, row, index) =>  <Link  to={"/solicitud/"+row.id+"/detalle"}>Ver... <Icon type="plus-circle" /> </Link>
+            
+            
+          },
+      {
+        title: 'Fecha',
+        dataIndex: 'fecha',   
+        
+        key:"C_2"
+       
+        
+        
+      },{
+        title: 'Request',
+        dataIndex: '',   
+        
+        key:"C_3",
+        render :(value, row, index) =>  this.renderTipoMsg(row.codigoMensaje,row.response)
+       
+        
+        
+      },   {
+        title: 'Cedente',
+        dataIndex: 'cedente',   
+        
+        key:"C_4"
+       
+        
+        
+      },   {
+        title: 'Id Mensaje',
+        dataIndex: 'mensaje',   
+        
+        key:"C_5"
+       
+        
+        
+      }, {
+        title: 'Id Proceso',
+        dataIndex: 'proceso',   
+        
+        key:"C_6"
+       
+        
+        
+      }, {
+        title: 'Documento',
+        dataIndex: 'documento',   
+        
+        key:"C_9"
+       
+        
+        
+      }, {
+        title: 'Contacto',
+        dataIndex: '',   
+        
+        key:"C_7",
+        render :(value, row, index) => <span>{row.nombre} <Tooltip title= {"Correo :"+ row.correo +" Telefono :"+row.telefono } >  <div className="textoLineal"><b><Icon type="mail" /></b> {row.correo}  <b><Icon type="phone" /></b> {row.telefono}    </div> </Tooltip> </span>
+       
+        
+        
+      },{
+        title: 'Departamento',
+        dataIndex: 'departamento',
+       
+        key:"C_8"
+       
+      }
+    ]; 
        
   
-      const datos=this.props.registros.data;
-       console.log("resultado de solicitudes ",datos);
+      const datos=this.props.registros;
+       console.log("resultado de solicitudes ",this.props);
        return (
-           <div>
-                <Row  gutter={16}>
-                {datos.map(item => <Col  key={"C"+item.id} span={6}  style={{ marginTop: 16 }}>
-                        <Card key={item.id}   title={item.fecha}         
-                                                                         extra={<Badge count={"Numero "+item.servicio+" "+item.cantidadNumero} style={{ backgroundColor: '#52c41a' }} />} >
-                          <Tooltip title= {item.cedente} >  <div className="textoLineal"><b>Cedente :</b>  {item.cedente} </div> </Tooltip>
-                          
-                          <Tooltip title= {item.nombre} > <div className="textoLineal"><b>Contacto :</b> {item.nombre}  </div> </Tooltip>
-                         <div className="textoLineal"><b>Documento :</b> {item.documento} </div> 
-                          <Tooltip title= {"Correo :"+ item.correo +" Telefono :"+item.telefono } >  <div className="textoLineal"><b><Icon type="mail" /></b> {item.correo}  <b><Icon type="phone" /></b> {item.telefono}    </div> </Tooltip>
-                           
-                           <div className="textoLineal"><b>Descripcion :</b>{item.descripcion} </div>   
-                           <Link  to={"/solicitud/"+item.id+"/detalle"}>Ver Detalle <Icon type="plus-circle" /> </Link>
-                           { this.renderTipoMsg(item.codigoMensaje,item.response) }   
-                        </Card>
-                    </Col>  )}
-              
-                </Row>
-                <Row>
-                    <Pagination style={{ marginTop: 16 }} size="small" total={datos.length} />
-                </Row>
-             </div>
+            <Table   rowKey={record => record.id}   columns={columns} dataSource={datos}  size="small"  pagination={{ defaultPageSize: 10, showSizeChanger: true,showTotal:(total,range)=>' Registros  '+total, pageSizeOptions: ['10', '20', '30']}} />    
        );
    }
 

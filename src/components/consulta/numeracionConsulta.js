@@ -8,7 +8,7 @@ import {removeNumeracion} from "../../action/ActionSolicitud";
 class  ListadoNumeracion extends Component{
 
     static propTypes ={
-        registros:PropTypes.object.isRequired
+        registros:PropTypes.array.isRequired
       }
    
    

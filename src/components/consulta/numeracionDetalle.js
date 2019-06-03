@@ -35,7 +35,7 @@ class  ListadoNumeracionDetalle extends Component{
                     {this.props.registro.data.map(item =>
                         <Col key={"C"+item.inicioRango} span={6} style={{ marginTop: 8 }} >  
                                                       
-                                                      {item.mensaje!==null ? <DetalleMensaje   detalle={item.mensaje} /> :<span></span> } 
+                                 {item.mensaje!==null ? <DetalleMensaje  key={"D"+item.inicioRango}  detalle={item.mensaje} /> :<span></span> } 
                                 <Icon type="phone" />  {item.inicioRango}  
                                  { this.renderTipoMsg(item.codigoMensaje,item.response) }                             
                         </Col> 

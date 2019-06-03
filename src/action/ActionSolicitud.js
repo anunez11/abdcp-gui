@@ -1,7 +1,7 @@
 
 import axios from "axios";
 import variables from "../variable";
-
+import { message } from 'antd';
 const getListaSolicitud = (request={}) => {
 
     return dispactch=>{   
@@ -31,8 +31,10 @@ const registrarSolicitud = (request={},codigo="CP") => {
                         data:response.data
                     });
                     console.log(response.data);
+                    message.success(response.data.message)   ;
                     if(codigo==="CP")window.location.href=variables.contexto+"consulta/"+response.data.id+"/detalle" ;
                     if(codigo==="SP")window.location.href=variables.contexto+"solicitud/"+response.data.id+"/detalle" ;
+                    if(codigo==="SR")window.location.reload();
            } );
 
        

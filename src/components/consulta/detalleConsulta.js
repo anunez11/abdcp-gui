@@ -6,12 +6,12 @@ import { Card,Badge,Icon,Tooltip} from 'antd';
 
 class  DetalleConsultaPrevia extends Component{
     static propTypes ={
-        registro:PropTypes.object.isRequired
+        registro:PropTypes.array.isRequired
       }
    
 
    render(){
-       const registros =this.props.registro.data;
+       const registros =this.props.registro;
        return (
            
                    <div>

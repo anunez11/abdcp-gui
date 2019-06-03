@@ -55,8 +55,7 @@ class  RegistroRetorno extends Component{
                     registro.tipoDocumento= values.tipoDocumento;
                     registro.tipo="02";
                     registro.codigo="SR";
-                    registro.esEnviado=true;                 
-                   
+                    registro.esEnviado=true;    
                     store.dispatch(registrarSolicitud(registro,registro.codigo));
                     this.setState({ loading: true });
                     setTimeout(() => {

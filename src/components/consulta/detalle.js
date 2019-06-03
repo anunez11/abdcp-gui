@@ -62,7 +62,7 @@ class  DetalleConsulta extends Component{
 const mapStateToProps = state => {
     return {
       registro: state.solicitud,
-      numeracion:state.solicitud.data.length>0  ? state.solicitud.data[0].numeracion : [],
+      numeracion:state.solicitud.length>0  ? state.solicitud[0].numeracion : [],
     }
   } 
 export default  connect(    mapStateToProps  )(DetalleConsulta);

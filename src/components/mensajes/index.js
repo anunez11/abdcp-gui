@@ -24,8 +24,10 @@ class  Mensaje extends Component{
          ///    store.dispatch(getListaEstadoServicio());
       //       store.dispatch(getListaEstadoFactura());
          ///    store.dispatch(getListaModalidad());
+         //
+         
          store.dispatch(getListaTipoMensaje());
-             store.dispatch(getListaMensaje({where:{fechaEnvio_betweendate:[moment().subtract(3,'year').format("YYYY-MM-DD"),moment().format("YYYY-MM-DD")]}}));     
+         store.dispatch(getListaMensaje({where:{fechaEnvio_betweendate:[moment().subtract(3,'year').format("YYYY-MM-DD"),moment().format("YYYY-MM-DD")]}}));     
 
 
      }
