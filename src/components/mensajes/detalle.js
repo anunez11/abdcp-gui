@@ -75,7 +75,7 @@ class  DetalleMensaje  extends Component{
                              console.log("errores",this.props.errores)
                              console.log("errores data",this.props.errores[obj])
                              console.log("data",obj)
-                                data=obj+this.props.errores[obj];
+                                data=obj+"  "+this.props.errores[obj];
                            }                          
                            else data=obj;
                            return (
