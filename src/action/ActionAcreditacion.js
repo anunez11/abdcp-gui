@@ -6,7 +6,10 @@ import { message } from 'antd';
 const getListaAcreditacion = (request={}) => {
 
     return dispactch=>{   
-             
+        dispactch( {
+            type:"GET_ACREDITACION",
+            data:[]
+        })  
 
        
           axios.post(variables.apiBase+"acreditacion/lista",request).then(response=>{
@@ -24,7 +27,10 @@ const getListaAcreditacionEnviado = (request={}) => {
 
     return dispactch=>{   
              
-
+        dispactch( {
+            type:"GET_ACREDITACION_ENVIADO",
+            data:[]
+        })
        
           axios.post(variables.apiBase+"acreditacion/lista",request).then(response=>{
                     console.log(response.data);

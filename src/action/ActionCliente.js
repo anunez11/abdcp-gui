@@ -6,7 +6,10 @@ const getListaCliente = (request={}) => {
 
     return dispactch=>{   
              
-
+        dispactch( {
+            type:"GET_CLIENTE",
+            data:[]
+        })
        
           axios.post(variables.apiBase+"cliente/lista",request).then(response=>{
                     dispactch( {

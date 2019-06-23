@@ -17,14 +17,14 @@ class  ListadoMensaje extends Component{
 
    render(){
     const columns = [
-        {
-            title: 'Accion',
-            dataIndex: '', 
-            key:"C_1",
-            render :(value, row, index) => <DetalleMensaje   detalle={row} />
-            
-            
-          },
+      {
+        title: 'Accion',
+        dataIndex: '', 
+        key:"C_1",
+        render :(value, row, index) => <DetalleMensaje   idMensaje={row.idMensaje} />
+        
+        
+      },
       {
         title: 'Fecha',
         dataIndex: 'fechaEnvio',   

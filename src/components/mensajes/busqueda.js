@@ -67,6 +67,9 @@ class  Busqueda extends Component{
                      { getFieldDecorator('codigoMensaje', {initialValue:""})(
                         <Select
                             placeholder="Tipo mensaje"
+                            showSearch                     
+                       
+                        optionFilterProp="children"
                            
                         >
                             <Option value="">Todos los Tipo </Option>    
@@ -106,7 +109,7 @@ class  Busqueda extends Component{
 
                  </Col>
                  <Col span={5}>
-                 { getFieldDecorator('fechaCreacion', {initialValue:[moment().subtract(2,'month'),moment()]})(
+                 { getFieldDecorator('fechaCreacion', {initialValue:[moment().subtract(1,'month'),moment()]})(
                       <RangePicker format="YYYY-MM-DD"  style={{marginTop:5}} /> )}
                  </Col>
                  <Col span={2}>

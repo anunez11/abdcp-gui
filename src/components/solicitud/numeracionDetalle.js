@@ -38,7 +38,7 @@ class  ListadoNumeracionDetalle extends Component{
                     <Row  gutter={8}>
                     {this.props.registro.data.map(item =>
                         <Col key={"C"+item.inicioRango} span={6} style={{ marginTop: 8 }} >                                
-                                {item.mensaje!==null ? <DetalleMensaje   detalle={item.mensaje} /> :<span></span> }  
+                                {item.idMensaje!==null ? <DetalleMensaje   idMensaje={item.idMensaje} /> :<span></span> }  
                                 <Icon type="phone" />  {item.inicioRango} 
                                   {   this.renderTipoMsg(item.codigoMensaje,item.response)  }                             
                         </Col> 

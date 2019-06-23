@@ -95,6 +95,12 @@ const reducer =(state,action) => {
             mensaje:action.data
         }
         
+      } else if(action.type==="GET_MENSAJE_ID"){
+        return {
+            ...state,
+            mensajeId:action.data
+        }
+        
       } else if(action.type==="GET_TIPO_MENSAJE"){
         return {
             ...state,
@@ -244,6 +250,7 @@ const inicial={
                 solicitud:[],
                 cliente:[],
                 mensaje:[],
+                mensajeId:{},
                 tipoMensaje:[],
                 clienteId:{},
                 programacion:[],    

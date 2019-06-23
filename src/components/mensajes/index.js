@@ -27,7 +27,7 @@ class  Mensaje extends Component{
          //
          
          store.dispatch(getListaTipoMensaje());
-         store.dispatch(getListaMensaje({where:{fechaEnvio_betweendate:[moment().subtract(3,'year').format("YYYY-MM-DD"),moment().format("YYYY-MM-DD")]}}));     
+         store.dispatch(getListaMensaje({where:{fechaEnvio_betweendate:[moment().subtract(1,'month').format("YYYY-MM-DD"),moment().format("YYYY-MM-DD")]}}));     
 
 
      }

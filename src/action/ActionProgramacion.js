@@ -7,7 +7,10 @@ const getListaProgramacion = (request={}) => {
 
     return dispactch=>{   
              
-
+        dispactch( {
+            type:"GET_PROGRAMACION",
+            data:[]
+        })
        
           axios.post(variables.apiBase+"programacion/lista",request).then(response=>{
                     dispactch( {
@@ -24,7 +27,10 @@ const getListaProgramacionEnviado = (request={}) => {
 
     return dispactch=>{   
              
-
+        dispactch( {
+            type:"GET_PROGRAMACION_ENVIADO",
+            data:[]
+        });
        
           axios.post(variables.apiBase+"programacion/lista",request).then(response=>{
                     console.log(response.data);

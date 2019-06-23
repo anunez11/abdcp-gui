@@ -27,7 +27,7 @@ class  ListadoConsulta extends Component{
             title: 'Accion',
             dataIndex: '', 
             key:"C_1",
-            render :(value, row, index) =>  <Link  to={"/solicitud/"+row.id+"/detalle"}>Ver... <Icon type="plus-circle" /> </Link>
+            render :(value, row, index) =>  <Link  to={"/consulta/"+row.id+"/detalle"}>Ver... <Icon type="plus-circle" /> </Link>
             
             
           },

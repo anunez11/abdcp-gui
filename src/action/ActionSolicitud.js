@@ -7,13 +7,16 @@ const getListaSolicitud = (request={}) => {
     return dispactch=>{   
              
 
-       
+        dispactch( {
+            type:"GET_SOLICITUD",
+            data:[]
+        });
           axios.post(variables.apiBase+"solicitudes/lista",request).then(response=>{
                     dispactch( {
                         type:"GET_SOLICITUD",
                         data:response.data
                     })
-           } );
+           } , error=>message.error(error.message) );
 
 
     };
@@ -35,7 +38,7 @@ const registrarSolicitud = (request={},codigo="CP") => {
                     if(codigo==="CP")window.location.href=variables.contexto+"consulta/"+response.data.id+"/detalle" ;
                     if(codigo==="SP")window.location.href=variables.contexto+"solicitud/"+response.data.id+"/detalle" ;
                     if(codigo==="SR")window.location.reload();
-           } );
+           } , error=>message.error(error.message) );
 
        
 
@@ -47,14 +50,17 @@ const getSolicitudId = (id=0) => {
 
     return dispactch=>{   
              
-
+        dispactch( {
+            type:"GET_SOLICITUD",
+            data:[]
+        });
        
           axios.get(variables.apiBase+"solicitudes/"+id).then(response=>{
                     dispactch( {
                         type:"GET_SOLICITUD_ID",
                         data:response.data
                     })
-           } );
+           } , error=>message.error(error.message) );
 
 
     };

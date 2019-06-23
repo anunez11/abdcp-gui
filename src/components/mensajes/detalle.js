@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 //import {Layout } from 'antd';  
 //import {Link} from "react-router-dom"; .
 import {connect} from "react-redux";
+import {getListaMensajeId} from "../../action/ActionMensaje";
+import store from "../../store";
 import { Button, Modal,Collapse,Badge,Row,Col,Tooltip} from 'antd';
 const Panel = Collapse.Panel;
 
@@ -15,8 +17,10 @@ class  DetalleMensaje  extends Component{
     static propTypes ={
        
         
-        detalle:PropTypes.object.isRequired
+         idMensaje:PropTypes.string.isRequired
     }
+    
+  
 
     state = {
        
@@ -28,11 +32,13 @@ class  DetalleMensaje  extends Component{
 
 
     showModal = () => {
+       /* this.setState({
+          visible: true,
+        });*/
+        store.dispatch(getListaMensajeId(this.props.idMensaje)); 
         this.setState({
           visible: true,
         });
-      
-      
     }
     
     handleOk = () => {
@@ -46,10 +52,12 @@ class  DetalleMensaje  extends Component{
     
 
      detalleMsg = (valuesArray,sizelabel=5,sizeValue=19) =>{
-             // console.log(" array "+Object.keys(valuesArray));
+           
           //  if(Object.keys(valuesArray).length>0) return (<div></div>);
-
+               if(valuesArray===null || valuesArray === undefined)   return (<div></div>);
+               //console.log( Object.keys(valuesArray));
             return Object.keys(valuesArray).map((item, i)=>{
+              
                       if(valuesArray[item]!==null) {   
     
                         let data;
@@ -71,13 +79,12 @@ class  DetalleMensaje  extends Component{
                          }else{
                            
                            // revisamo si es  CausaRechazo CausaNoIntegridad
-                           if(item==="CausaRechazo" || item==="CausaNoIntegridad" ){
-                             console.log("errores",this.props.errores)
-                             console.log("errores data",this.props.errores[obj])
-                             console.log("data",obj)
+                        /*   if(item==="CausaRechazo" || item==="CausaNoIntegridad" || item==="CausaObjecion"){
+                          
                                 data=obj+"  "+this.props.errores[obj];
-                           }                          
-                           else data=obj;
+                           }  */                        
+                          // else
+                            data=obj;
                            return (
                             <Row key={item} gutter={16} >
                               <Col sm={sizelabel} className="textoLineal ItemMsg"> <Tooltip   title={item}>{item}</Tooltip>  </Col>
@@ -94,11 +101,46 @@ class  DetalleMensaje  extends Component{
            
      }
        
+     printModal(){
+      const { visible } = this.state;
+      if(this.props.detalle.categoriaMensaje===undefined) return (<span></span>);
+      else return (<Modal width={1020}
+      visible={visible}
+      title=  {"Mensaje  :"+this.props.detalle.categoriaMensaje+"( "+this.props.detalle.direccionMensaje+" )"}
+      onOk={this.handleSubmit}
+      onCancel={this.handleCancel}
+      footer={[
+        <Button key="back" onClick={this.handleCancel}>Cerrar</Button>,
+      
+      ]}
+    ><Collapse defaultActiveKey={['1','2','3']} >
+    <Panel header="Cabecera" key="1">
+      
+    {this.detalleMsg(this.props.detalle.request.cabeceraMensaje) }          
+         
+      
+    </Panel>
+    <Panel header="Cuerpo" key="2">
 
+   {this.detalleMsg(this.props.detalle.request.cuerpoMensaje)} 
+ 
+    </Panel>
+    <Panel header="Response" key="3">
+          { 
+            this.props.detalle.response==="ACK" ? 
+          <Badge count={this.props.detalle.response} style={{ backgroundColor: '#52c41a' }} /> :  
+         <div><Badge count={this.props.detalle.response} />  <span> {this.props.detalle.responseMsg} </span> </div> }
+          
+    </Panel>
+  </Collapse> 
+    </Modal>);
+
+     }
 
 
       render(){
-        const { visible } = this.state;
+
+       
       
 
         
@@ -109,36 +151,8 @@ class  DetalleMensaje  extends Component{
               <Button type="primary" ghost size="small" icon="mail"  onClick={this.showModal}>
                       {this.props.btnTxt}
               </Button>
-            <Modal width={1020}
-              visible={visible}
-              title=  {"Mensaje  :"+this.props.detalle.categoriaMensaje+"( "+this.props.detalle.direccionMensaje+" )"}
-              onOk={this.handleSubmit}
-              onCancel={this.handleCancel}
-              footer={[
-                <Button key="back" onClick={this.handleCancel}>Cerrar</Button>,
-              
-              ]}
-            ><Collapse defaultActiveKey={['1','2','3']} >
-            <Panel header="Cabecera" key="1">
-              
-            {this.detalleMsg(this.props.detalle.request.CabeceraMensaje) }          
-                 
-              
-            </Panel>
-            <Panel header="Cuerpo" key="2">
-
-           {this.detalleMsg(this.props.detalle.request.CuerpoMensaje)} 
-         
-            </Panel>
-            <Panel header="Response" key="3">
-                  { 
-                    this.props.detalle.response==="ACK" ? 
-                  <Badge count={this.props.detalle.response} style={{ backgroundColor: '#52c41a' }} /> :  
-                 <div><Badge count={this.props.detalle.response} />  <span> {this.props.detalle.responseMsg} </span> </div> }
-                  
-            </Panel>
-          </Collapse> 
-            </Modal>
+              {this.printModal()}
+           
           </span>
            );
       }
@@ -149,9 +163,8 @@ class  DetalleMensaje  extends Component{
 
  const mapStateToProps = state => {
   return {
-    
-   
-    errores:state.error 
+    errores:state.error ,
+    detalle:state.mensajeId
   }
 } 
 export default  connect(    mapStateToProps  )(DetalleMensaje);
