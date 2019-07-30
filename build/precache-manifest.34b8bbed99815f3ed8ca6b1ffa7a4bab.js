@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b1504b5c06b588c99e8e3d6b049e9499",
+    "revision": "85c68ae2e101267511cd70f9b34fd3cb",
     "url": "/abdcp/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/abdcp/static/css/2.a414b599.chunk.css"
   },
   {
-    "revision": "0682312507e01fbcbce4",
+    "revision": "677ebbd53dc13ebbf1af",
     "url": "/abdcp/static/css/main.7f0f58ab.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/abdcp/static/js/2.5790d9f3.chunk.js"
   },
   {
-    "revision": "0682312507e01fbcbce4",
-    "url": "/abdcp/static/js/main.4cfd9911.chunk.js"
+    "revision": "677ebbd53dc13ebbf1af",
+    "url": "/abdcp/static/js/main.725c253e.chunk.js"
   },
   {
     "revision": "af187d0db382da5386e5",
